@@ -6,10 +6,10 @@ set -e
 # get an abspath to this script
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-RUN_ID=leif-seute/grappa-1.2/wm54xocy
+RUN_ID=leif-seute/grappa-1.2/ikj2ps9a
 
 
-MODELNAME=grappa-1.2.1
+MODELNAME=grappa-1.2.2
 
 
 # cd to this directory:

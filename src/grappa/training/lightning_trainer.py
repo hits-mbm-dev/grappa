@@ -9,7 +9,7 @@ import os
 from typing import Union
 
 
-def get_lightning_trainer(max_epochs=500, gradient_clip_val=1e1, profiler="simple", early_stopping_criterion='early_stopping_loss', config={}, name:str=None, notes:str=None, project='grappa', resume_id:str=None, wandb_dir:Union[str,Path]=None, **kwargs)->pl.Trainer:
+def get_lightning_trainer(max_epochs=500, gradient_clip_val=1e1, profiler="simple", early_stopping_criterion='early_stopping_loss', config={}, name:str=None, notes:str=None, project='grappa', resume_id:str=None, wandb_dir:Union[str,Path]=Path.cwd(), **kwargs)->pl.Trainer:
     """
     Returns a pytorch lightning trainer with a wandb logger.
     Initializes wandb.
@@ -44,6 +44,10 @@ def get_lightning_trainer(max_epochs=500, gradient_clip_val=1e1, profiler="simpl
     wandb_run_dir = wandb_logger.experiment.dir
     assert isinstance(wandb_run_dir, str) or isinstance(wandb_run_dir, Path), f"Internal Error, found type {type(wandb_run_dir)}"
     checkpoint_dir = str(Path(wandb_run_dir) / "checkpoints")
+
+    print('checkpoint_dir:', checkpoint_dir)
+
+
     ###############################
     # CHECKPOINTING MODIFICATIONS:
     # SAVE MODEL WITHOUT ENERGY MODULE

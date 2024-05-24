@@ -12,7 +12,7 @@ parser.add_argument("--shrink_train", type=float, default=None, help="Subsample 
 parser.add_argument("--n_periodicity", type=int, default=3, help="Number of periodicity for the torsion features.")
 parser.add_argument("--no_torsion_cutoff", action="store_true", help="Do not use the torsion cutoff.")
 parser.add_argument("--pretrain_path", type=str, default=None, help="Path to pretrained model used for initialization.")
-
+parser.add_argument("--train_only_am1bcc", action="store_true", help="Train only on am1bcc datasets. This can be used for evaluating the difference in charge models.")
 
 if __name__ == "__main__":
 
@@ -71,6 +71,12 @@ if __name__ == "__main__":
         # set the param loss epochs to 0
         config['lit_model_config']['param_loss_epochs'] = 0
         config['trainer_config']['name'] += "_pretrain"
+
+    if args.train_only_am1bcc:
+        config['data_config']['pure_val_datasets'] = [ds for ds in config['data_config']['datasets'] if 'amber99sbildn' in ds or "_rad" in ds]
+        config['data_config']['datasets'] = [ds for ds in config['data_config']['datasets'] if not 'amber99sbildn' in ds and not "_rad" in ds]
+        config['trainer_config']['name'] += "_am1bcc"
+        config['model_config']['in_feat_name'].remove('charge_model')
         
     # train:
-    do_trainrun(config=config, project=args.project, pretrain_path=args.pretrain_path)
+    do_trainrun(config=config, project=args.project, pretrain_path=args.pretrain_path, dir=Path(__file__).parent)

@@ -8,7 +8,7 @@ THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 RUN_ID=leif-seute/grappa-1.2/wm54xocy
 
-MODELNAME=grappa-1.2.1
+MODELNAME=grappa-1.2.2
 
 TAG='v.1.2.0'
 
@@ -28,23 +28,23 @@ pushd ../../
 
 # upload files
 DATASETS=(
-  spice-des-monomers
-  spice-pubchem
-  gen2
-  gen2-torsion
-  rna-diverse
-  rna-trinucleotide
-  rna-nucleoside
-  spice-dipeptide
-  protein-torsion
-  pepconf-dlc
+  # spice-des-monomers
+  # spice-pubchem
+  # gen2
+  # gen2-torsion
+  # rna-diverse
+  # rna-trinucleotide
+  # rna-nucleoside
+  # spice-dipeptide
+  # protein-torsion
+  # pepconf-dlc
   spice-dipeptide_amber99sbildn
-  tripeptides_amber99sbildn
-  dipeptide_rad
-  hyp-dop_amber99sbildn
-  AA_bondbreak_rad_amber99sbildn
-  uncapped_amber99sbildn
-  espaloma_split
+  # tripeptides_amber99sbildn
+  # dipeptide_rad
+  # hyp-dop_amber99sbildn
+  # AA_bondbreak_rad_amber99sbildn
+  # uncapped_amber99sbildn
+  # espaloma_split
 )
 
 DATADIR=data/dgl_datasets
